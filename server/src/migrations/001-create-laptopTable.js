@@ -11,6 +11,14 @@ export const up = async () => {
         brand VARCHAR(100) NOT NULL,
         price DECIMAL(10, 2) NOT NULL,
         stock INT DEFAULT 0,
+        cpu_id INT NOT NULL,
+        cpu_name VARCHAR(255) NOT NULL,
+        gpu_id INT NOT NULL,
+        gpu_name VARCHAR(255) NOT NULL,
+        ram_id INT NOT NULL,
+        ram_name VARCHAR(255) NOT NULL,
+        storage_id INT NOT NULL,
+        storage_name VARCHAR(255) NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
           ON UPDATE CURRENT_TIMESTAMP

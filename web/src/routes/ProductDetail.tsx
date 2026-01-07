@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
-import { fetchLaptopById } from "../services/laptopApi";
+import { fetchLaptopById } from "../services/laptopServices";
 import type { Laptop } from "../types/laptopTypes";
 import { formatCurrency } from "../ultis/number";
 

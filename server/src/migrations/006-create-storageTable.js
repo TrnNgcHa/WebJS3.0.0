@@ -5,15 +5,15 @@ export const up = async () => {
 
   try {
     await connection.execute(`
-				CREATE TABLE IF NOT EXISTS drives (
+				CREATE TABLE IF NOT EXISTS storages (
 						id INT PRIMARY KEY,
 						name VARCHAR(255) NOT NULL,
 						brand VARCHAR(100) NOT NULL,
 						price DECIMAL(10, 2) NOT NULL,
 						stock INT DEFAULT 0,
-                        type VARCHAR(255) NULL,
-                        interface VARCHAR(255) NULL,
-                        capacity INT NULL,
+            type VARCHAR(255) NULL,
+            interface VARCHAR(255) NULL,
+            capacity INT NULL,
 						created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 						updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 								ON UPDATE CURRENT_TIMESTAMP
@@ -23,7 +23,7 @@ export const up = async () => {
 				COLLATE=utf8mb4_unicode_ci;
 		`);
 
-    console.log("✅ Migration UP: drives table created");
+    console.log("✅ Migration UP: storages table created");
   } catch (error) {
     console.error("❌ Migration UP failed:", error);
     throw error;
@@ -40,7 +40,7 @@ export const down = async () => {
 			DROP TABLE IF EXISTS drives
 		`);
 
-    console.log("✅ Migration DOWN: drives table dropped");
+    console.log("✅ Migration DOWN: storages table dropped");
   } catch (error) {
     console.error("❌ Migration DOWN failed:", error);
     throw error;

@@ -3,7 +3,7 @@ import { up as up002 } from "./002-create-userTable.js";
 import { up as up003 } from "./003-create-cpuTable.js";
 import { up as up004 } from "./004-create-gpuTable.js";
 import { up as up005 } from "./005-create-ramTable.js";
-import { up as up006 } from "./006-create-driveTable.js";
+import { up as up006 } from "./006-create-storageTable.js";
 import { initializeDatabase } from "../configs/database.js";
 
 const runMigration = async () => {

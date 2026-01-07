@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import LaptopCard from "./LaptopCard";
 import type { Laptop } from "../types/laptopTypes";
-import { fetchLaptops } from "../services/laptopApi";
+import { fetchLaptops } from "../services/laptopServices";
 
 type SortKey = "price-asc" | "price-desc" | "name";
 

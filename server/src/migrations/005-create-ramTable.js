@@ -11,9 +11,9 @@ export const up = async () => {
 						brand VARCHAR(100) NOT NULL,
 						price DECIMAL(10, 2) NOT NULL,
 						stock INT DEFAULT 0,
-                        capacity INT NULL,
-                        gen VARCHAR(255) NULL,
-                        speed INT NULL,
+            capacity INT NULL,
+            gen VARCHAR(255) NULL,
+            speed INT NULL,
 						created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 						updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 								ON UPDATE CURRENT_TIMESTAMP

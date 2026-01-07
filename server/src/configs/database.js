@@ -16,7 +16,7 @@ export const initializeDatabase = async () => {
     pool = await mysql.createPool({
       ...dbConfig,
       waitForConnections: true,
-      connectionLimit: 10,
+      connectionLimit: 50,
       queueLimit: 0,
     });
     console.log("Database pool created successfully");

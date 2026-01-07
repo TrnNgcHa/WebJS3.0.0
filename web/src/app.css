@@ -6,17 +6,41 @@
     -apple-system,
     BlinkMacSystemFont,
     sans-serif;
-  color: #101828;
-  background-color: #f6f7fb;
+  color: var(--text-primary);
+  background-color: var(--bg-secondary);
   line-height: 1.5;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  /* Brand Colors */
   --primary: #ff1f1f;
   --primary-dark: #a01515;
+  /* Text Colors */
+  --text-primary: #101828;
   --text-muted: #667085;
+  --text-muted-light: #94a3b8;
+  --text-light: #cbd5f5;
+  /* Background Colors */
+  --bg-primary: #f6f7fb;
+  --bg-secondary: #f6f7fb;
+  --bg-light: #eff4ff;
+  --bg-lighter: #f8fafc;
+  --bg-light-blue: #eef2ff;
+  --bg-lighter-blue: #dbe9ff;
+  --bg-dark: #0f172a;
+  --bg-dark-secondary: #182642;
+  --bg-input: #ffffff;
+  /* UI Colors */
   --border: #e4e7ec;
   --card-bg: #ffffff;
   --shadow-sm: 0px 15px 40px rgba(15, 23, 42, 0.08);
+  /* Status Colors */
+  --success: #6ee7b7;
+  --success-dark: #15803d;
+  --success-light: #dcfce7;
+  --error: #fee4e2;
+  --error-dark: #b42318;
+  /* Badge Colors */
+  --badge-blue: #e0edff;
 }
 
 *,
@@ -28,7 +52,11 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: radial-gradient(circle at top, #eff4ff, #f6f7fb 45%);
+  background: radial-gradient(
+    circle at top,
+    var(--bg-light),
+    var(--bg-secondary) 45%
+  );
 }
 
 a {
@@ -72,7 +100,7 @@ a {
 }
 
 .navbar__logo span {
-  color: #101828;
+  color: var(--text-primary);
 }
 
 .navbar__tagline {
@@ -95,7 +123,7 @@ a {
 }
 
 .navbar__link--active {
-  background: #eef2ff;
+  background: var(--bg-light-blue);
   color: var(--primary);
 }
 
@@ -115,7 +143,7 @@ a {
 
 .btn--primary {
   background: var(--primary);
-  color: #fff;
+  color: var(--card-bg);
   box-shadow: 0px 12px 30px rgba(31, 100, 255, 0.3);
 }
 
@@ -125,7 +153,7 @@ a {
 
 .btn--ghost {
   border-color: rgba(16, 24, 40, 0.08);
-  color: #101828;
+  color: var(--text-primary);
   background: rgba(255, 255, 255, 0.7);
 }
 
@@ -149,7 +177,12 @@ a {
   gap: clamp(1rem, 4vw, 3rem);
   padding: clamp(1.5rem, 3vw, 3rem);
   border-radius: 2rem;
-  background: linear-gradient(135deg, #ffffff 0%, #eef2ff 60%, #dbe9ff 100%);
+  background: linear-gradient(
+    135deg,
+    var(--card-bg) 0%,
+    var(--bg-light-blue) 60%,
+    var(--bg-lighter-blue) 100%
+  );
   box-shadow: var(--shadow-sm);
 }
 
@@ -205,8 +238,8 @@ a {
 .hero__card {
   border-radius: 1.5rem;
   padding: 2rem;
-  background: #0f172a;
-  color: #fff;
+  background: var(--bg-dark);
+  color: var(--card-bg);
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -215,7 +248,7 @@ a {
 .hero__card-title {
   letter-spacing: 0.3rem;
   text-transform: uppercase;
-  color: #94a3b8;
+  color: var(--text-muted-light);
 }
 
 .hero__card ul {
@@ -227,7 +260,7 @@ a {
 }
 
 .hero__card-link {
-  color: #cbd5f5;
+  color: var(--text-light);
   font-weight: 600;
 }
 
@@ -253,8 +286,8 @@ a {
 }
 
 .section--accent {
-  background: linear-gradient(120deg, #101828, #182642);
-  color: #fff;
+  background: linear-gradient(120deg, var(--bg-dark), var(--bg-dark-secondary));
+  color: var(--card-bg);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 2rem;
@@ -295,7 +328,7 @@ a {
 .card {
   padding: 1.5rem;
   border-radius: 1.25rem;
-  background: #f8fafc;
+  background: var(--bg-lighter);
   border: 1px solid rgba(15, 23, 42, 0.08);
 }
 
@@ -330,7 +363,7 @@ a {
   content: "•";
   position: absolute;
   left: 0;
-  color: #6ee7b7;
+  color: var(--success);
 }
 
 .testimonials {
@@ -350,7 +383,7 @@ a {
   padding: 1.5rem;
   border-radius: 1.25rem;
   border: 1px solid rgba(15, 23, 42, 0.08);
-  background: #f8fafc;
+  background: var(--bg-lighter);
 }
 
 .laptop-grid {
@@ -387,7 +420,7 @@ a {
   border-radius: 1.25rem;
   border: 1px solid rgba(15, 23, 42, 0.08);
   padding: 1.25rem;
-  background: #f8fafc;
+  background: var(--bg-lighter);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -395,12 +428,15 @@ a {
 
 .laptop-card__badge {
   align-self: flex-start;
-  background: #e0edff;
-  color: var(--primary);
+  background: var(--badge-blue);
   border-radius: 999px;
   padding: 0.15rem 0.75rem;
   font-size: 0.85rem;
   font-weight: 600;
+}
+
+.laptop-card__name {
+  color: var(--primary-dark);
 }
 
 .laptop-card ul {
@@ -457,7 +493,7 @@ a {
 .badge-list span {
   padding: 0.35rem 0.85rem;
   border-radius: 999px;
-  background: #eef2ff;
+  background: var(--bg-light-blue);
   color: var(--primary);
   font-weight: 600;
   font-size: 0.85rem;
@@ -488,7 +524,7 @@ a {
   flex-direction: column;
   gap: 0.5rem;
   font-weight: 600;
-  color: #0f172a;
+  color: var(--bg-dark);
 }
 
 .contact-form input,
@@ -511,8 +547,8 @@ a {
 }
 
 .footer {
-  background: #0f172a;
-  color: #cbd5f5;
+  background: var(--bg-dark);
+  color: var(--text-light);
   padding: 2rem;
   border-radius: 1.5rem;
   display: flex;
@@ -546,18 +582,18 @@ a {
 }
 
 .state--loading {
-  background: #f1f5ff;
+  background: var(--bg-light);
   color: var(--primary);
 }
 
 .state--error {
-  background: #fee4e2;
-  color: #b42318;
+  background: var(--error);
+  color: var(--error-dark);
 }
 
 .state--success {
-  background: #dcfce7;
-  color: #15803d;
+  background: var(--success-light);
+  color: var(--success-dark);
 }
 
 .back-link {
@@ -604,7 +640,7 @@ a {
   flex-direction: column;
   gap: 0.4rem;
   font-weight: 600;
-  color: #0f172a;
+  color: var(--bg-dark);
 }
 
 .auth-form input,
@@ -631,16 +667,16 @@ a {
 .auth-error {
   padding: 0.75rem 1rem;
   border-radius: 0.9rem;
-  background: #fee4e2;
-  color: #b42318;
+  background: var(--error);
+  color: var(--error-dark);
   font-size: 0.9rem;
 }
 
 .auth-success {
   padding: 0.75rem 1rem;
   border-radius: 0.9rem;
-  background: #dcfce7;
-  color: #15803d;
+  background: var(--success-light);
+  color: var(--success-dark);
   font-size: 0.9rem;
 }
 

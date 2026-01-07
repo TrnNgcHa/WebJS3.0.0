@@ -11,10 +11,10 @@ export const up = async () => {
 						brand VARCHAR(100) NOT NULL,
 						price DECIMAL(10, 2) NOT NULL,
 						stock INT DEFAULT 0,
-                        cuda_core INT NULL,
-                        base_clock INT NULL,
-                        vram INT NULL,
-                        pcie INT NULL,
+            cuda_core INT NULL,
+            base_clock INT NULL,
+            vram INT NULL,
+            pcie INT NULL,
 						created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 						updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 								ON UPDATE CURRENT_TIMESTAMP

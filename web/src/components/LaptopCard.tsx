@@ -17,8 +17,8 @@ function LaptopCard({ laptop }: LaptopCardProps) {
       </h3>
       <div className="laptop-card__price">
         <span>{formatCurrency(laptop.price)}</span>
-        <Link to={`/products/${laptop.id}`} className="btn btn--ghost">
-          Chi tiết
+        <Link to={`/products/${laptop.id}`}>
+          <i className="bi bi-cart-fill"></i>
         </Link>
       </div>
     </article>
