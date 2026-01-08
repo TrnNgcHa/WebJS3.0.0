@@ -5,9 +5,13 @@ export interface Laptop {
   price: number;
   stock: number;
   cpu_id: number;
+  cpu_name: string;
   gpu_id: number;
+  gpu_name: string;
   ram_id: number;
+  ram_name: string;
   storage_id: number;
+  storage_name: string;
   created_at: string;
   updated_at: string;
 }

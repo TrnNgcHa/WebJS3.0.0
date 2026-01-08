@@ -15,6 +15,12 @@ function LaptopCard({ laptop }: LaptopCardProps) {
           {laptop.name}
         </Link>
       </h3>
+      <ul>
+        <li>CPU: {laptop.cpu_name}</li>
+        <li>GPU: {laptop.gpu_name}</li>
+        <li>RAM: {laptop.ram_name}</li>
+        <li>Dung lượng: {laptop.storage_name}</li>
+      </ul>
       <div className="laptop-card__price">
         <span>{formatCurrency(laptop.price)}</span>
         <Link to={`/products/${laptop.id}`}>

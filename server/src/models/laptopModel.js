@@ -5,6 +5,14 @@ export default class Laptop {
     brand,
     price = 0,
     stock = 0,
+    cpu_id = null,
+    cpu_name = null,
+    gpu_id = null,
+    gpu_name = null,
+    ram_id = null,
+    ram_name = null,
+    storage_id = null,
+    storage_name = null,
     created_at = null,
     updated_at = null,
   } = {}) {
@@ -13,6 +21,14 @@ export default class Laptop {
     this.brand = brand;
     this.price = price !== null ? Number(price) : null;
     this.stock = stock !== null ? Number(stock) : 0;
+    this.cpu_id = cpu_id;
+    this.cpu_name = cpu_name;
+    this.gpu_id = gpu_id;
+    this.gpu_name = gpu_name;
+    this.ram_id = ram_id;
+    this.ram_name = ram_name;
+    this.storage_id = storage_id;
+    this.storage_name = storage_name;
     this.created_at = created_at;
     this.updated_at = updated_at;
   }
@@ -25,17 +41,44 @@ export default class Laptop {
       brand: row.brand,
       price: row.price,
       stock: row.stock,
+      cpu_id: row.cpu_id,
+      cpu_name: row.cpu_name,
+      gpu_id: row.gpu_id,
+      gpu_name: row.gpu_name,
+      ram_id: row.ram_id,
+      ram_name: row.ram_name,
+      storage_id: row.storage_id,
+      storage_name: row.storage_name,
       created_at: row.created_at,
       updated_at: row.updated_at,
     });
   }
 
   toInsertParams() {
-    return [this.name, this.brand, this.price, this.stock];
+    return [
+      this.name,
+      this.brand,
+      this.price,
+      this.stock,
+      this.cpu_id,
+      this.gpu_id,
+      this.ram_id,
+      this.storage_id,
+    ];
   }
 
   toUpdateParams() {
-    return [this.name, this.brand, this.price, this.stock, this.id];
+    return [
+      this.name,
+      this.brand,
+      this.price,
+      this.stock,
+      this.cpu_id,
+      this.gpu_id,
+      this.ram_id,
+      this.storage_id,
+      this.id,
+    ];
   }
 
   validate() {

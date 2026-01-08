@@ -11,6 +11,7 @@ function LaptopGrid() {
   const [sortBy, setSortBy] = useState<SortKey>("price-asc");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [visibleCount, setVisibleCount] = useState<number>(12);
 
   useEffect(() => {
     let ignore = false;
@@ -32,6 +33,10 @@ function LaptopGrid() {
     };
   }, [query]);
 
+  useEffect(() => {
+    setVisibleCount(12);
+  }, [query]);
+
   const sortedItems = useMemo(() => {
     return [...items].sort((a, b) => {
       if (sortBy === "price-asc") return a.price - b.price;
@@ -39,6 +44,10 @@ function LaptopGrid() {
       return a.name.localeCompare(b.name);
     });
   }, [items, sortBy]);
+
+  const visibleItems = useMemo(() => {
+    return sortedItems.slice(0, visibleCount);
+  }, [sortedItems, visibleCount]);
 
   return (
     <section className="laptop-grid">
@@ -64,10 +73,20 @@ function LaptopGrid() {
         <p className="state">Không tìm thấy sản phẩm phù hợp.</p>
       )}
       <div className="laptop-grid__items">
-        {sortedItems.map((item) => (
+        {visibleItems.map((item) => (
           <LaptopCard key={item.id} laptop={item} />
         ))}
       </div>
+      {!isLoading && !error && sortedItems.length > visibleCount && (
+        <div className="laptop-grid__more">
+          <button
+            className="btn btn--secondary"
+            onClick={() => setVisibleCount((c) => c + 12)}
+          >
+            Xem thêm
+          </button>
+        </div>
+      )}
     </section>
   );
 }
