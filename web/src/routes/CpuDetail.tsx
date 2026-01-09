@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
-import { fetchLaptopById } from "../services/laptopServices";
-import type { Laptop } from "../types/laptopTypes";
+import { fetchCpuById } from "src/services/cpuServices";
+import type { Cpu } from "../types/cpuTypes";
 import { formatCurrency } from "../ultis/number";
 
-function ProductDetail() {
+function CpuDetail() {
   const { id } = useParams();
-  const [laptop, setLaptop] = useState<Laptop | null>(null);
+  const [cpu, setCpu] = useState<Cpu | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -14,10 +14,10 @@ function ProductDetail() {
     if (!id) return;
     let ignore = false;
     setIsLoading(true);
-    fetchLaptopById(id)
+    fetchCpuById(id)
       .then((data) => {
         if (ignore) return;
-        setLaptop(data);
+        setCpu(data);
         setError(null);
       })
       .catch((err) => {
@@ -35,10 +35,10 @@ function ProductDetail() {
     return <p className="state state--loading">Đang tải thông tin...</p>;
   }
 
-  if (error || !laptop) {
+  if (error || !cpu) {
     return (
       <div className="state state--error">
-        {error ?? "Laptop không tồn tại"}
+        {error ?? "CPU không tồn tại"}
         <div>
           <Link to="/products" className="btn btn--ghost">
             Quay lại danh sách
@@ -55,9 +55,9 @@ function ProductDetail() {
       </Link>
       <div className="detail-card">
         <div>
-          <p className="eyebrow">{laptop.brand ?? "Laptop cao cấp"}</p>
-          <h1>{laptop.name}</h1>
-          <p className="detail-card__price">{formatCurrency(laptop.price)}</p>
+          <p className="eyebrow">{cpu.brand ?? "Laptop cao cấp"}</p>
+          <h1>{cpu.name}</h1>
+          <p className="detail-card__price">{formatCurrency(cpu.price)}</p>
           <ul className="spec-list">
             <li>
               <span>CPU</span>
@@ -103,4 +103,4 @@ function ProductDetail() {
   );
 }
 
-export default ProductDetail;
+export default CpuDetail;

@@ -27,7 +27,7 @@
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 6rem;
   justify-items: center;
-  padding: 0 1rem;
+  padding: 0 3rem;
 }
 
 .laptop-card {
@@ -38,7 +38,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  width: 20rem;
+  width: 19rem;
 }
 
 .laptop-card__badge {

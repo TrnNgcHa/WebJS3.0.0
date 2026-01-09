@@ -12,6 +12,7 @@
 @import "./components/footer.css";
 @import "./components/states.css";
 @import "./components/utilities.css";
+@import "./components/sidebar.css";
 
 /* Page Specific Styles */
 @import "./pages/hero.css";

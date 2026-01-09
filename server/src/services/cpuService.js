@@ -1,7 +1,7 @@
 import * as cpuRepo from "../repositories/cpuRepo.js";
-import Cpu from "../models/cpuModel";
+import Cpu from "../models/cpuModel.js";
 
-export const findAll = async () => {
+export const getAll = async () => {
   const rows = await cpuRepo.findAll();
   return rows;
 };

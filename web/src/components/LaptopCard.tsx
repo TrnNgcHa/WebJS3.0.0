@@ -11,7 +11,10 @@ function LaptopCard({ laptop }: LaptopCardProps) {
     <article className="laptop-card">
       <div className="laptop-card__badge">{laptop.brand ?? "Laptop"}</div>
       <h3>
-        <Link to={`/products/${laptop.id}`} className="laptop-card__name">
+        <Link
+          to={`/products/laptop/${laptop.id}`}
+          className="laptop-card__name"
+        >
           {laptop.name}
         </Link>
       </h3>
@@ -23,7 +26,7 @@ function LaptopCard({ laptop }: LaptopCardProps) {
       </ul>
       <div className="laptop-card__price">
         <span>{formatCurrency(laptop.price)}</span>
-        <Link to={`/products/${laptop.id}`}>
+        <Link to={`/products/laptop/${laptop.id}`}>
           <i className="bi bi-cart-fill"></i>
         </Link>
       </div>
