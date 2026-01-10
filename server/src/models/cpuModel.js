@@ -8,7 +8,7 @@ export default class Cpu {
     cores = 1,
     threads = 1,
     base_clock = 0.0,
-    igpu = false,
+    igpu,
     created_at = null,
     updated_at = null,
   } = {}) {
@@ -20,7 +20,7 @@ export default class Cpu {
     this.cores = cores !== null ? Number(cores) : 1;
     this.threads = threads !== null ? Number(threads) : 1;
     this.base_clock = base_clock !== null ? Number(base_clock) : 0.0;
-    this.igpu = Boolean(igpu);
+    this.igpu = igpu;
     this.created_at = created_at;
     this.updated_at = updated_at;
   }
@@ -49,7 +49,7 @@ export default class Cpu {
       this.cores,
       this.threads,
       this.base_clock,
-      this.igpu ? 1 : 0,
+      this.igpu,
     ];
   }
   toUpdateParams() {
@@ -61,7 +61,7 @@ export default class Cpu {
       this.cores,
       this.threads,
       this.base_clock,
-      this.igpu ? 1 : 0,
+      this.igpu,
       this.id,
     ];
   }

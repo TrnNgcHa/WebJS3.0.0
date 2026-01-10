@@ -11,7 +11,11 @@ function CpuCard({ cpu }: CpuCardProps) {
     <article className="laptop-card">
       <div className="laptop-card__badge">{cpu.brand ?? "CPU"}</div>
       <h3>
-        <Link to={`/products/cpu/${cpu.id}`} className="laptop-card__name">
+        <Link
+          to={`/products/cpu/${cpu.id}`}
+          className="laptop-card__name"
+          target="_blank"
+        >
           {cpu.name}
         </Link>
       </h3>
@@ -24,8 +28,8 @@ function CpuCard({ cpu }: CpuCardProps) {
       </ul>
       <div className="laptop-card__price">
         <span>{formatCurrency(cpu.price)}</span>
-        <Link to={`/products/cpu/${cpu.id}`}>
-          <i className="bi bi-cart-fill"></i>
+        <Link to={`/products/cpu/${cpu.id}`} target="_blank">
+          <i className="bi bi-cart-fill" style={{ fontSize: "1.8rem" }}></i>
         </Link>
       </div>
     </article>

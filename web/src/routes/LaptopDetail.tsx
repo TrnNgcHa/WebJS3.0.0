@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router";
 import { fetchLaptopById } from "../services/laptopServices";
 import type { Laptop } from "../types/laptopTypes";
 import { formatCurrency } from "../ultis/number";
+import Navbar from "src/components/Navbar";
 
 function LaptopDetail() {
   const { id } = useParams();
@@ -50,6 +51,7 @@ function LaptopDetail() {
 
   return (
     <div className="page page--detail">
+      <Navbar />
       <Link to="/products" className="back-link">
         ← Danh sách sản phẩm
       </Link>
@@ -61,19 +63,21 @@ function LaptopDetail() {
           <ul className="spec-list">
             <li>
               <span>CPU</span>
-              <strong>cpu</strong>
+              <Link to={`/products/cpu/${laptop.cpu_id}`} target="_blank">
+                <strong>{laptop.cpu_name}</strong>
+              </Link>
             </li>
             <li>
               <span>GPU</span>
-              <strong>gpu</strong>
+              <strong>{laptop.gpu_name}</strong>
             </li>
             <li>
               <span>RAM</span>
-              <strong>ram</strong>
+              <strong>{laptop.ram_name}</strong>
             </li>
             <li>
               <span>Lưu trữ</span>
-              <strong>drive</strong>
+              <strong>{laptop.storage_name}</strong>
             </li>
           </ul>
           <div className="cta-stack">

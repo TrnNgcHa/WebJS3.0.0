@@ -3,6 +3,7 @@
   padding: 1.5rem;
   border-radius: 1.5rem;
   box-shadow: var(--shadow-sm);
+  min-height: 1050px;
 }
 
 .laptop-grid__toolbar {
@@ -68,6 +69,13 @@
   align-items: center;
   font-size: 1.2rem;
   font-weight: 700;
+}
+
+.price_link {
+}
+
+.price_link:hover {
+  color: var(--primary);
 }
 
 .laptop-grid__more {

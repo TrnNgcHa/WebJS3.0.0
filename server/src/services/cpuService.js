@@ -3,7 +3,7 @@ import Cpu from "../models/cpuModel.js";
 
 export const getAll = async () => {
   const rows = await cpuRepo.findAll();
-  return rows;
+  return rows.map((row) => Cpu.fromDb(row));
 };
 
 export const getById = async (id) => {

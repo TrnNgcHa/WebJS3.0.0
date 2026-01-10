@@ -14,6 +14,7 @@ function LaptopCard({ laptop }: LaptopCardProps) {
         <Link
           to={`/products/laptop/${laptop.id}`}
           className="laptop-card__name"
+          target="_blank"
         >
           {laptop.name}
         </Link>
@@ -22,12 +23,16 @@ function LaptopCard({ laptop }: LaptopCardProps) {
         <li>CPU: {laptop.cpu_name}</li>
         <li>GPU: {laptop.gpu_name}</li>
         <li>RAM: {laptop.ram_name}</li>
-        <li>Dung lượng: {laptop.storage_name}</li>
+        <li>Ổ cứng: {laptop.storage_name}</li>
       </ul>
       <div className="laptop-card__price">
         <span>{formatCurrency(laptop.price)}</span>
-        <Link to={`/products/laptop/${laptop.id}`}>
-          <i className="bi bi-cart-fill"></i>
+        <Link
+          className="price_link"
+          to={`/products/laptop/${laptop.id}`}
+          target="_blank"
+        >
+          <i className="bi bi-cart-fill" style={{ fontSize: "1.8rem" }}></i>
         </Link>
       </div>
     </article>

@@ -39,6 +39,15 @@ function ProductsPage() {
                 CPU
               </button>
             </li>
+            <li className="sidebar__item">
+              <button className="sidebar__button">GPU</button>
+            </li>
+            <li className="sidebar__item">
+              <button className="sidebar__button">RAM</button>
+            </li>
+            <li className="sidebar__item">
+              <button className="sidebar__button">Ổ cứng</button>
+            </li>
           </ul>
         </aside>
 
