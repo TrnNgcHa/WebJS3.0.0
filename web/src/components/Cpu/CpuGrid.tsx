@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
-import RamCard from "./RamCard";
-import type { Ram } from "../types/ramTypes";
-import { fetchRams } from "../services/ramServices";
+import CpuCard from "./CpuCard";
+import type { Cpu } from "../../types/cpuTypes";
+import { fetchCpus } from "../../services/cpuServices";
 
 type SortKey = "price-asc" | "price-desc" | "name";
 
-function RamGrid() {
-  const [items, setItems] = useState<Ram[]>([]);
+function CpuGrid() {
+  const [items, setItems] = useState<Cpu[]>([]);
   const [query, setQuery] = useState("");
   const [sortBy, setSortBy] = useState<SortKey>("price-asc");
   const [isLoading, setIsLoading] = useState(true);
@@ -16,7 +16,7 @@ function RamGrid() {
   useEffect(() => {
     let ignore = false;
     setIsLoading(true);
-    fetchRams({ q: query })
+    fetchCpus({ q: query })
       .then((data) => {
         if (ignore) return;
         setItems(data);
@@ -54,7 +54,7 @@ function RamGrid() {
       <div className="laptop-grid__toolbar">
         <input
           type="search"
-          placeholder="Tìm theo tên, RAM..."
+          placeholder="Tìm theo tên, CPU..."
           value={query}
           onChange={(event) => setQuery(event.target.value)}
         />
@@ -74,7 +74,7 @@ function RamGrid() {
       )}
       <div className="laptop-grid__items">
         {visibleItems.map((item) => (
-          <RamCard key={item.id} ram={item} />
+          <CpuCard key={item.id} cpu={item} />
         ))}
       </div>
       {!isLoading && !error && sortedItems.length > visibleCount && (
@@ -91,4 +91,4 @@ function RamGrid() {
   );
 }
 
-export default RamGrid;
+export default CpuGrid;

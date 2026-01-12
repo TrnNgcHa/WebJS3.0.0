@@ -5,22 +5,22 @@ export const up = async () => {
 
   try {
     await connection.execute(`
-      CREATE TABLE IF NOT EXISTS laptops (
-        id INT PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
-        brand VARCHAR(100) NOT NULL,
-        price DECIMAL(10, 2) NOT NULL,
-        stock INT DEFAULT 0,
-        cpu_id INT NOT NULL,
-        cpu_name VARCHAR(255) NOT NULL,
-        gpu_id INT NOT NULL,
-        gpu_name VARCHAR(255) NOT NULL,
-        ram_id INT NOT NULL,
-        ram_name VARCHAR(255) NOT NULL,
-        storage_id INT NOT NULL,
-        storage_name VARCHAR(255) NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      CREATE TABLE IF NOT EXISTS LaptopTable (
+        Id INT PRIMARY KEY,
+        Name VARCHAR(255) NOT NULL,
+        Brand VARCHAR(100) NOT NULL,
+        Price DECIMAL(10, 2) NOT NULL,
+        Stock INT DEFAULT 0,
+        CpuId INT NOT NULL,
+        CpuName VARCHAR(255) NOT NULL,
+        GpuId INT NOT NULL,
+        GpuName VARCHAR(255) NOT NULL,
+        RamId INT NOT NULL,
+        RamName VARCHAR(255) NOT NULL,
+        StorageId INT NOT NULL,
+        StorageName VARCHAR(255) NOT NULL,
+        CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
           ON UPDATE CURRENT_TIMESTAMP
       )
         ENGINE=InnoDB

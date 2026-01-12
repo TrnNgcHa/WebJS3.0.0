@@ -1,6 +1,6 @@
 import { Link } from "react-router";
-import { formatCurrency } from "../ultis/number";
-import type { Storage } from "../types/storageTypes";
+import { formatCurrency } from "../../ultis/number";
+import type { Storage } from "../../types/storageTypes";
 
 type StorageCardProps = {
   storage: Storage;

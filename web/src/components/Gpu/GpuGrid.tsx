@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
-import LaptopCard from "./LaptopCard";
-import type { Laptop } from "../types/laptopTypes";
-import { fetchLaptops } from "../services/laptopServices";
+import GpuCard from "./GpuCard";
+import type { Gpu } from "../../types/gpuTypes";
+import { fetchGpus } from "../../services/gpuServices";
 
 type SortKey = "price-asc" | "price-desc" | "name";
 
-function LaptopGrid() {
-  const [items, setItems] = useState<Laptop[]>([]);
+function GpuGrid() {
+  const [items, setItems] = useState<Gpu[]>([]);
   const [query, setQuery] = useState("");
   const [sortBy, setSortBy] = useState<SortKey>("price-asc");
   const [isLoading, setIsLoading] = useState(true);
@@ -16,7 +16,7 @@ function LaptopGrid() {
   useEffect(() => {
     let ignore = false;
     setIsLoading(true);
-    fetchLaptops({ q: query })
+    fetchGpus({ q: query })
       .then((data) => {
         if (ignore) return;
         setItems(data);
@@ -54,7 +54,7 @@ function LaptopGrid() {
       <div className="laptop-grid__toolbar">
         <input
           type="search"
-          placeholder="Tìm theo tên, CPU..."
+          placeholder="Tìm theo tên, GPU..."
           value={query}
           onChange={(event) => setQuery(event.target.value)}
         />
@@ -74,7 +74,7 @@ function LaptopGrid() {
       )}
       <div className="laptop-grid__items">
         {visibleItems.map((item) => (
-          <LaptopCard key={item.id} laptop={item} />
+          <GpuCard key={item.id} gpu={item} />
         ))}
       </div>
       {!isLoading && !error && sortedItems.length > visibleCount && (
@@ -91,4 +91,4 @@ function LaptopGrid() {
   );
 }
 
-export default LaptopGrid;
+export default GpuGrid;

@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
-import CpuCard from "./CpuCard";
-import type { Cpu } from "../types/cpuTypes";
-import { fetchCpus } from "../services/cpuServices";
+import LaptopCard from "./LaptopCard";
+import type { Laptop } from "../../types/laptopTypes";
+import { fetchLaptops } from "../../services/laptopServices";
 
 type SortKey = "price-asc" | "price-desc" | "name";
 
-function CpuGrid() {
-  const [items, setItems] = useState<Cpu[]>([]);
+function LaptopGrid() {
+  const [items, setItems] = useState<Laptop[]>([]);
   const [query, setQuery] = useState("");
   const [sortBy, setSortBy] = useState<SortKey>("price-asc");
   const [isLoading, setIsLoading] = useState(true);
@@ -16,7 +16,7 @@ function CpuGrid() {
   useEffect(() => {
     let ignore = false;
     setIsLoading(true);
-    fetchCpus({ q: query })
+    fetchLaptops({ q: query })
       .then((data) => {
         if (ignore) return;
         setItems(data);
@@ -74,7 +74,7 @@ function CpuGrid() {
       )}
       <div className="laptop-grid__items">
         {visibleItems.map((item) => (
-          <CpuCard key={item.id} cpu={item} />
+          <LaptopCard key={item.id} laptop={item} />
         ))}
       </div>
       {!isLoading && !error && sortedItems.length > visibleCount && (
@@ -91,4 +91,4 @@ function CpuGrid() {
   );
 }
 
-export default CpuGrid;
+export default LaptopGrid;

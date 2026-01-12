@@ -2,13 +2,13 @@ import { initializeDatabase } from "../configs/database.js";
 
 export const findAll = async () => {
   const pool = await initializeDatabase();
-  const [rows] = await pool.execute("SELECT * FROM storages");
+  const [rows] = await pool.execute("SELECT * FROM StorageTable");
   return rows;
 };
 
 export const findById = async (id) => {
   const pool = await initializeDatabase();
-  const [rows] = await pool.execute("SELECT * FROM storages WHERE id = ?", [
+  const [rows] = await pool.execute("SELECT * FROM StorageTable WHERE Id = ?", [
     id,
   ]);
   return rows[0] || null;
@@ -17,7 +17,7 @@ export const findById = async (id) => {
 export const create = async (storageParams) => {
   const pool = await initializeDatabase();
   const [result] = await pool.execute(
-    `INSERT INTO storages (name, brand, price, stock, storage_type, interface_type, capacity)
+    `INSERT INTO StorageTable (Name, Brand, Price, Stock, StorageType, InterfaceType, Capacity)
          VALUES (?, ?, ?, ?, ?, ?, ?)`,
     storageParams
   );
@@ -28,7 +28,7 @@ export const updateById = async (id, storageParams) => {
   const pool = await initializeDatabase();
   const params = [...storageParams, id];
   const [result] = await pool.execute(
-    `UPDATE storages SET name = ?, brand = ?, price = ?, stock = ?, storage_type = ?, interface_type = ?, capacity = ? WHERE id = ?`,
+    `UPDATE StorageTable SET Name = ?, Brand = ?, Price = ?, Stock = ?, StorageType = ?, InterfaceType = ?, Capacity = ? WHERE Id = ?`,
     params
   );
   return result.affectedRows;
@@ -36,7 +36,7 @@ export const updateById = async (id, storageParams) => {
 
 export const removeById = async (id) => {
   const pool = await initializeDatabase();
-  const [result] = await pool.execute("DELETE FROM storages WHERE id = ?", [
+  const [result] = await pool.execute("DELETE FROM StorageTable WHERE Id = ?", [
     id,
   ]);
   return result.affectedRows;

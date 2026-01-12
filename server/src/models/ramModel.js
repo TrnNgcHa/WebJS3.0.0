@@ -25,16 +25,16 @@ export default class Ram {
   static fromDb(row) {
     if (!row) return null;
     return new Ram({
-      id: row.id,
-      name: row.name,
-      brand: row.brand,
-      price: row.price,
-      stock: row.stock,
-      capacity: row.capacity,
-      gen: row.gen,
-      speed: row.speed,
-      created_at: row.created_at,
-      updated_at: row.updated_at,
+      id: row.Id,
+      name: row.Name,
+      brand: row.Brand,
+      price: row.Price,
+      stock: row.Stock,
+      capacity: row.Capacity,
+      gen: row.Gen,
+      speed: row.Speed,
+      created_at: row.CreatedAt,
+      updated_at: row.UpdatedAt,
     });
   }
   toInsertParams() {

@@ -5,18 +5,18 @@ export const up = async () => {
 
   try {
     await connection.execute(`
-      CREATE TABLE IF NOT EXISTS cpus (
-        id INT PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
-        brand VARCHAR(100) NOT NULL,
-        price DECIMAL(10, 2) NOT NULL,
-        stock INT DEFAULT 0,
-        cores INT NULL,
-        threads INT NULL,
-        base_clock INT NULL,
-        igpu VARCHAR(255) NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      CREATE TABLE IF NOT EXISTS CpuTable (
+        Id INT PRIMARY KEY,
+        Name VARCHAR(255) NOT NULL,
+        Brand VARCHAR(100) NOT NULL,
+        Price DECIMAL(10, 2) NOT NULL,
+        Stock INT DEFAULT 0,
+        Cores INT NULL,
+        Threads INT NULL,
+        BaseClock INT NULL,
+        Igpu VARCHAR(255) NULL,
+        CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
           ON UPDATE CURRENT_TIMESTAMP
       )
         ENGINE=InnoDB
@@ -24,7 +24,7 @@ export const up = async () => {
         COLLATE=utf8mb4_unicode_ci;
     `);
 
-    console.log("✅ Migration UP: cpu table created");
+    console.log("✅ Migration UP: CpuTable created");
   } catch (error) {
     console.error("❌ Migration UP failed:", error);
     throw error;
@@ -41,10 +41,10 @@ export const down = async () => {
 
   try {
     await connection.execute(`
-      DROP TABLE IF EXISTS cpus
+      DROP TABLE IF EXISTS CpuTable
     `);
 
-    console.log("✅ Migration DOWN: cpus table dropped");
+    console.log("✅ Migration DOWN: CpuTable dropped");
   } catch (error) {
     console.error("❌ Migration DOWN failed:", error);
     throw error;

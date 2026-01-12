@@ -2,20 +2,22 @@ import { initializeDatabase } from "../configs/database.js";
 
 export const findAll = async () => {
   const pool = await initializeDatabase();
-  const [rows] = await pool.execute("SELECT * FROM gpus");
+  const [rows] = await pool.execute("SELECT * FROM GpuTable");
   return rows;
 };
 
 export const findById = async (id) => {
   const pool = await initializeDatabase();
-  const [rows] = await pool.execute("SELECT * FROM gpus WHERE id = ?", [id]);
+  const [rows] = await pool.execute("SELECT * FROM GpuTable WHERE Id = ?", [
+    id,
+  ]);
   return rows[0] || null;
 };
 
 export const create = async (gpuParams) => {
   const pool = await initializeDatabase();
   const [result] = await pool.execute(
-    `INSERT INTO gpus (name, brand, price, stock, cuda_core, base_clock, vram, pcie)
+    `INSERT INTO GpuTable (Name, Brand, Price, Stock, CudaCore, BaseClock, Vram, Pcie)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
     gpuParams
   );
@@ -26,7 +28,7 @@ export const updateById = async (id, gpuParams) => {
   const pool = await initializeDatabase();
   const params = [...gpuParams, id];
   const [result] = await pool.execute(
-    `UPDATE gpus SET name = ?, brand = ?, price = ?, stock = ?, cuda_core = ?, base_clock = ?, vram = ?, pcie = ? WHERE id = ?`,
+    `UPDATE GpuTable SET Name = ?, Brand = ?, Price = ?, Stock = ?, CudaCore = ?, BaseClock = ?, Vram = ?, Pcie = ? WHERE Id = ?`,
     params
   );
   return result.affectedRows;
@@ -34,6 +36,8 @@ export const updateById = async (id, gpuParams) => {
 
 export const removeById = async (id) => {
   const pool = await initializeDatabase();
-  const [result] = await pool.execute("DELETE FROM gpus WHERE id = ?", [id]);
+  const [result] = await pool.execute("DELETE FROM GpuTable WHERE Id = ?", [
+    id,
+  ]);
   return result.affectedRows;
 };

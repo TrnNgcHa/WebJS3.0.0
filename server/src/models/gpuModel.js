@@ -27,17 +27,17 @@ export default class Gpu {
   static fromDb(row) {
     if (!row) return null;
     return new Gpu({
-      id: row.id,
-      name: row.name,
-      brand: row.brand,
-      price: row.price,
-      stock: row.stock,
-      cuda_core: row.cuda_core,
-      base_clock: row.base_clock,
-      vram: row.vram,
-      pcie: row.pcie,
-      created_at: row.created_at,
-      updated_at: row.updated_at,
+      id: row.Id,
+      name: row.Name,
+      brand: row.Brand,
+      price: row.Price,
+      stock: row.Stock,
+      cuda_core: row.CudaCore,
+      base_clock: row.BaseClock,
+      vram: row.Vram,
+      pcie: row.Pcie,
+      created_at: row.CreatedAt,
+      updated_at: row.UpdatedAt,
     });
   }
   toInsertParams() {

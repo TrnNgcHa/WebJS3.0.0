@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import StorageCard from "./StorageCard";
-import type { Storage } from "../types/storageTypes";
-import { fetchStorages } from "../services/storageServices";
+import type { Storage } from "../../types/storageTypes";
+import { fetchStorages } from "../../services/storageServices";
 
 type SortKey = "price-asc" | "price-desc" | "name";
 

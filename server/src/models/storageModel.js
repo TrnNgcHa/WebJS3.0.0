@@ -25,16 +25,16 @@ export default class Storage {
   static fromDb(row) {
     if (!row) return null;
     return new Storage({
-      id: row.id,
-      name: row.name,
-      brand: row.brand,
-      price: row.price,
-      stock: row.stock,
-      storage_type: row.storage_type,
-      interface_type: row.interface_type,
-      capacity: row.capacity,
-      created_at: row.created_at,
-      updated_at: row.updated_at,
+      id: row.Id,
+      name: row.Name,
+      brand: row.Brand,
+      price: row.Price,
+      stock: row.Stock,
+      storage_type: row.StorageType,
+      interface_type: row.InterfaceType,
+      capacity: row.Capacity,
+      created_at: row.CreatedAt,
+      updated_at: row.UpdatedAt,
     });
   }
   toInsertParams() {

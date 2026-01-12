@@ -1,9 +1,9 @@
 import { useState } from "react";
-import LaptopGrid from "../components/LaptopGrid";
-import CpuGrid from "src/components/CpuGrid";
-import StorageGrid from "src/components/StorageGrid";
-import RamGrid from "src/components/RamGrid";
-import GpuGrid from "src/components/GpuGrid";
+import LaptopGrid from "../components/Laptop/LaptopGrid";
+import CpuGrid from "src/components/Cpu/CpuGrid";
+import StorageGrid from "src/components/Storage/StorageGrid";
+import RamGrid from "src/components/Ram/RamGrid";
+import GpuGrid from "src/components/Gpu/GpuGrid";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 

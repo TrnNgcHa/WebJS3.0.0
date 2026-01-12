@@ -2,20 +2,22 @@ import { initializeDatabase } from "../configs/database.js";
 
 export const findAll = async () => {
   const pool = await initializeDatabase();
-  const [rows] = await pool.execute("SELECT * FROM cpus");
+  const [rows] = await pool.execute("SELECT * FROM CpuTable");
   return rows;
 };
 
 export const findById = async (id) => {
   const pool = await initializeDatabase();
-  const [rows] = await pool.execute("SELECT * FROM cpus WHERE id = ?", [id]);
+  const [rows] = await pool.execute("SELECT * FROM CpuTable WHERE Id = ?", [
+    id,
+  ]);
   return rows[0] || null;
 };
 
 export const create = async (cpuParams) => {
   const pool = await initializeDatabase();
   const [result] = await pool.execute(
-    `INSERT INTO cpus (name, brand, price, stock, cores, threads, base_clock, igpu)
+    `INSERT INTO CpuTable (Name, Brand, Price, Stock, Cores, Threads, BaseClock, Igpu)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
     cpuParams
   );
@@ -26,7 +28,7 @@ export const updateById = async (id, cpuParams) => {
   const pool = await initializeDatabase();
   const params = [...cpuParams, id];
   const [result] = await pool.execute(
-    `UPDATE cpus SET name = ?, brand = ?, price = ?, stock = ?, cores = ?, threads = ?, base_clock = ?, igpu = ? WHERE id = ?`,
+    `UPDATE CpuTable SET Name = ?, Brand = ?, Price = ?, Stock = ?, Cores = ?, Threads = ?, BaseClock = ?, Igpu = ? WHERE Id = ?`,
     params
   );
   return result.affectedRows;
@@ -34,6 +36,8 @@ export const updateById = async (id, cpuParams) => {
 
 export const removeById = async (id) => {
   const pool = await initializeDatabase();
-  const [result] = await pool.execute("DELETE FROM cpus WHERE id = ?", [id]);
+  const [result] = await pool.execute("DELETE FROM CpuTable WHERE Id = ?", [
+    id,
+  ]);
   return result.affectedRows;
 };

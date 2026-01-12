@@ -1,6 +1,6 @@
 import { Link } from "react-router";
-import { formatCurrency } from "../ultis/number";
-import type { Cpu } from "../types/cpuTypes";
+import { formatCurrency } from "../../ultis/number";
+import type { Cpu } from "../../types/cpuTypes";
 
 type CpuCardProps = {
   cpu: Cpu;

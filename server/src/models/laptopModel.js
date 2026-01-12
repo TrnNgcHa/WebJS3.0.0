@@ -36,21 +36,21 @@ export default class Laptop {
   static fromDb(row) {
     if (!row) return null;
     return new Laptop({
-      id: row.id,
-      name: row.name,
-      brand: row.brand,
-      price: row.price,
-      stock: row.stock,
-      cpu_id: row.cpu_id,
-      cpu_name: row.cpu_name,
-      gpu_id: row.gpu_id,
-      gpu_name: row.gpu_name,
-      ram_id: row.ram_id,
-      ram_name: row.ram_name,
-      storage_id: row.storage_id,
-      storage_name: row.storage_name,
-      created_at: row.created_at,
-      updated_at: row.updated_at,
+      id: row.Id,
+      name: row.Name,
+      brand: row.Brand,
+      price: row.Price,
+      stock: row.Stock,
+      cpu_id: row.CpuId,
+      cpu_name: row.CpuName,
+      gpu_id: row.GpuId,
+      gpu_name: row.GpuName,
+      ram_id: row.RamId,
+      ram_name: row.RamName,
+      storage_id: row.StorageId,
+      storage_name: row.StorageName,
+      created_at: row.CreatedAt,
+      updated_at: row.UpdatedAt,
     });
   }
 

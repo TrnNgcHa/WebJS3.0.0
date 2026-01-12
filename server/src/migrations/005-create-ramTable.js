@@ -5,25 +5,25 @@ export const up = async () => {
 
   try {
     await connection.execute(`
-				CREATE TABLE IF NOT EXISTS rams (
-						id INT PRIMARY KEY,
-						name VARCHAR(255) NOT NULL,
-						brand VARCHAR(100) NOT NULL,
-						price DECIMAL(10, 2) NOT NULL,
-						stock INT DEFAULT 0,
-            capacity INT NULL,
-            gen VARCHAR(255) NULL,
-            speed INT NULL,
-						created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-						updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-								ON UPDATE CURRENT_TIMESTAMP
-				)
-				ENGINE=InnoDB
-				DEFAULT CHARSET=utf8mb4
-				COLLATE=utf8mb4_unicode_ci;
-		`);
+      CREATE TABLE IF NOT EXISTS RamTable (
+        Id INT PRIMARY KEY,
+        Name VARCHAR(255) NOT NULL,
+        Brand VARCHAR(100) NOT NULL,
+        Price DECIMAL(10, 2) NOT NULL,
+        Stock INT DEFAULT 0,
+        Capacity INT NULL,
+        Gen VARCHAR(255) NULL,
+        Speed INT NULL,
+        CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+          ON UPDATE CURRENT_TIMESTAMP
+      )
+        ENGINE=InnoDB
+        DEFAULT CHARSET=utf8mb4
+        COLLATE=utf8mb4_unicode_ci;
+    `);
 
-    console.log("✅ Migration UP: rams table created");
+    console.log("✅ Migration UP: RamTable created");
   } catch (error) {
     console.error("❌ Migration UP failed:", error);
     throw error;
@@ -37,10 +37,10 @@ export const down = async () => {
 
   try {
     await connection.execute(`
-			DROP TABLE IF EXISTS rams
-		`);
+      DROP TABLE IF EXISTS RamTable
+    `);
 
-    console.log("✅ Migration DOWN: rams table dropped");
+    console.log("✅ Migration DOWN: RamTable dropped");
   } catch (error) {
     console.error("❌ Migration DOWN failed:", error);
     throw error;

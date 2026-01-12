@@ -1,6 +1,6 @@
 import { Link } from "react-router";
-import { formatCurrency } from "../ultis/number";
-import type { Laptop } from "../types/laptopTypes";
+import { formatCurrency } from "../../ultis/number";
+import type { Laptop } from "../../types/laptopTypes";
 
 type LaptopCardProps = {
   laptop: Laptop;

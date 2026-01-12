@@ -1,6 +1,6 @@
 import { Link } from "react-router";
-import { formatCurrency } from "../ultis/number";
-import type { Gpu } from "../types/gpuTypes";
+import { formatCurrency } from "../../ultis/number";
+import type { Gpu } from "../../types/gpuTypes";
 
 type GpuCardProps = {
   gpu: Gpu;

@@ -27,17 +27,17 @@ export default class Cpu {
   static fromDb(row) {
     if (!row) return null;
     return new Cpu({
-      id: row.id,
-      name: row.name,
-      brand: row.brand,
-      price: row.price,
-      stock: row.stock,
-      cores: row.cores,
-      threads: row.threads,
-      base_clock: row.base_clock,
-      igpu: row.igpu,
-      created_at: row.created_at,
-      updated_at: row.updated_at,
+      id: row.Id,
+      name: row.Name,
+      brand: row.Brand,
+      price: row.Price,
+      stock: row.Stock,
+      cores: row.Cores,
+      threads: row.Threads,
+      base_clock: row.BaseClock,
+      igpu: row.Igpu,
+      created_at: row.CreatedAt,
+      updated_at: row.UpdatedAt,
     });
   }
   toInsertParams() {
