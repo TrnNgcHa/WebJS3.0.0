@@ -1,10 +1,13 @@
 import { useState } from "react";
 import LaptopGrid from "../components/LaptopGrid";
 import CpuGrid from "src/components/CpuGrid";
+import StorageGrid from "src/components/StorageGrid";
+import RamGrid from "src/components/RamGrid";
+import GpuGrid from "src/components/GpuGrid";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-type ProductCategory = "laptop" | "cpu";
+type ProductCategory = "laptop" | "cpu" | "storage" | "ram" | "gpu";
 
 function ProductsPage() {
   const [activeCategory, setActiveCategory] =
@@ -40,13 +43,28 @@ function ProductsPage() {
               </button>
             </li>
             <li className="sidebar__item">
-              <button className="sidebar__button">GPU</button>
+              <button
+                className={`sidebar__button ${activeCategory === "gpu" ? "sidebar__button--active" : ""}`}
+                onClick={() => setActiveCategory("gpu")}
+              >
+                GPU
+              </button>
             </li>
             <li className="sidebar__item">
-              <button className="sidebar__button">RAM</button>
+              <button
+                className={`sidebar__button ${activeCategory === "ram" ? "sidebar__button--active" : ""}`}
+                onClick={() => setActiveCategory("ram")}
+              >
+                RAM
+              </button>
             </li>
             <li className="sidebar__item">
-              <button className="sidebar__button">Ổ cứng</button>
+              <button
+                className={`sidebar__button ${activeCategory === "storage" ? "sidebar__button--active" : ""}`}
+                onClick={() => setActiveCategory("storage")}
+              >
+                Ổ cứng
+              </button>
             </li>
           </ul>
         </aside>
@@ -58,7 +76,13 @@ function ProductsPage() {
               <p className="eyebrow">
                 {activeCategory === "laptop"
                   ? "Danh mục laptop"
-                  : "Danh mục CPU"}
+                  : activeCategory === "cpu"
+                    ? "Danh mục CPU"
+                    : activeCategory === "storage"
+                      ? "Danh mục ổ cứng"
+                      : activeCategory === "ram"
+                        ? "Danh mục RAM"
+                        : "Danh mục GPU"}
               </p>
               <h1>Kho sản phẩm cập nhật theo ngày</h1>
               <p className="section__subtitle">
@@ -68,7 +92,17 @@ function ProductsPage() {
             </div>
           </section>
 
-          {activeCategory === "laptop" ? <LaptopGrid /> : <CpuGrid />}
+          {activeCategory === "laptop" ? (
+            <LaptopGrid />
+          ) : activeCategory === "cpu" ? (
+            <CpuGrid />
+          ) : activeCategory === "storage" ? (
+            <StorageGrid />
+          ) : activeCategory === "ram" ? (
+            <RamGrid />
+          ) : (
+            <GpuGrid />
+          )}
         </div>
       </div>
 
