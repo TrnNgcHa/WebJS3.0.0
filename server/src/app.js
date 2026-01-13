@@ -5,6 +5,7 @@ import cpuRoutes from "./routes/cpuRoutes.js";
 import gpuRoutes from "./routes/gpuRoutes.js";
 import ramRoutes from "./routes/ramRoutes.js";
 import storageRoutes from "./routes/storageRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(
 
 app.use(express.json());
 
+app.use("/api/auth", authRoutes);
 app.use("/api/laptops", laptopRoutes);
 app.use("/api/cpus", cpuRoutes);
 app.use("/api/gpus", gpuRoutes);

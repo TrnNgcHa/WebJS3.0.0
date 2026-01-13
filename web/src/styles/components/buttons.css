@@ -1,4 +1,5 @@
 .btn {
+  cursor: pointer;
   border-radius: 999px;
   border: 1px solid transparent;
   padding: 0.65rem 1.4rem;

@@ -1,4 +1,5 @@
 import { Link, NavLink } from "react-router";
+import { useAuth } from "../contexts/AuthContext";
 
 const navLinks = [
   { to: "/", label: "Trang chủ" },
@@ -7,6 +8,8 @@ const navLinks = [
 ];
 
 function Navbar() {
+  const { isAuthenticated, user, logout } = useAuth();
+
   return (
     <header className="navbar">
       <div className="navbar__brand">
@@ -31,12 +34,23 @@ function Navbar() {
         ))}
       </nav>
       <div className="navbar__cta">
-        <Link to="/login" className="btn btn--ghost">
-          Đăng nhập
-        </Link>
-        <Link to="/register" className="btn btn--primary">
-          Đăng ký
-        </Link>
+        {isAuthenticated ? (
+          <>
+            <span className="navbar__user">Xin chào, {user?.userName}</span>
+            <button onClick={logout} className="btn btn--ghost">
+              Đăng xuất
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to="/login" className="btn btn--ghost">
+              Đăng nhập
+            </Link>
+            <Link to="/register" className="btn btn--primary">
+              Đăng ký
+            </Link>
+          </>
+        )}
       </div>
     </header>
   );
