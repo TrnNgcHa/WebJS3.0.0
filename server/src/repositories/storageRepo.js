@@ -1,4 +1,4 @@
-import { initializeDatabase } from "../configs/database.js";
+import { initializeDatabase } from "../config/database.js";
 
 export const findAll = async () => {
   const pool = await initializeDatabase();

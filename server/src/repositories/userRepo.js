@@ -1,4 +1,4 @@
-import { initializeDatabase } from "../configs/database.js";
+import { initializeDatabase } from "../config/database.js";
 import User from "../models/userModel.js";
 
 export const findByEmail = async (email) => {
