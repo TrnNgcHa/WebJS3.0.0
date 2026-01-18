@@ -1,5 +1,5 @@
-import express from "express";
-import * as cpuController from "../controllers/cpuController.js";
+const express = require("express");
+const cpuController = require("../controllers/cpuController");
 
 const router = express.Router();
 
@@ -8,4 +8,4 @@ router.get("/:id", cpuController.getOne);
 router.post("/", cpuController.create);
 router.put("/:id", cpuController.update);
 router.delete("/:id", cpuController.remove);
-export default router;
+module.exports = router;

@@ -1,4 +1,4 @@
-export default class Laptop {
+class Laptop {
   constructor({
     id = null,
     name,
@@ -94,3 +94,5 @@ export default class Laptop {
     return errors;
   }
 }
+
+module.exports = Laptop;

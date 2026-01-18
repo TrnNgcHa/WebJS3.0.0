@@ -1,7 +1,7 @@
-import { validationResult } from "express-validator";
-import * as authService from "../services/authService.js";
+const { validationResult } = require("express-validator");
+const authService = require("../services/authService");
 
-export const register = async (req, res) => {
+const register = async (req, res) => {
   try {
     // Check validation errors
     const errors = validationResult(req);
@@ -28,7 +28,7 @@ export const register = async (req, res) => {
   }
 };
 
-export const login = async (req, res) => {
+const login = async (req, res) => {
   try {
     // Check validation errors
     const errors = validationResult(req);
@@ -49,7 +49,7 @@ export const login = async (req, res) => {
   }
 };
 
-export const getProfile = async (req, res) => {
+const getProfile = async (req, res) => {
   try {
     const userId = req.user.userId;
 
@@ -63,10 +63,12 @@ export const getProfile = async (req, res) => {
   }
 };
 
-export const logout = async (req, res) => {
+const logout = async (req, res) => {
   // Logout is handled on the frontend by removing the token
   // This endpoint is optional and can be used for logging purposes
   res.status(200).json({
     message: "Logged out successfully",
   });
 };
+
+module.exports = { register, login, getProfile, logout };

@@ -1,6 +1,6 @@
-import * as authService from "../services/authService.js";
+const authService = require("../services/authService");
 
-export const verifyAuth = (req, res, next) => {
+const verifyAuth = (req, res, next) => {
   try {
     const token = req.headers.authorization?.split(" ")[1];
 
@@ -16,3 +16,5 @@ export const verifyAuth = (req, res, next) => {
     res.status(401).json({ error: "Invalid or expired token" });
   }
 };
+
+module.exports = { verifyAuth };

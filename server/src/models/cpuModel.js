@@ -1,4 +1,4 @@
-export default class Cpu {
+class Cpu {
   constructor({
     id = null,
     name,
@@ -83,3 +83,5 @@ export default class Cpu {
     return errors;
   }
 }
+
+module.exports = Cpu;

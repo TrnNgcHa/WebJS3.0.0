@@ -1,11 +1,11 @@
-import express from "express";
-import cors from "cors";
-import laptopRoutes from "./routes/laptopRoutes.js";
-import cpuRoutes from "./routes/cpuRoutes.js";
-import gpuRoutes from "./routes/gpuRoutes.js";
-import ramRoutes from "./routes/ramRoutes.js";
-import storageRoutes from "./routes/storageRoutes.js";
-import authRoutes from "./routes/authRoutes.js";
+const express = require("express");
+const cors = require("cors");
+const laptopRoutes = require("./routes/laptopRoutes");
+const cpuRoutes = require("./routes/cpuRoutes");
+const gpuRoutes = require("./routes/gpuRoutes");
+const ramRoutes = require("./routes/ramRoutes");
+const storageRoutes = require("./routes/storageRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 
@@ -13,7 +13,7 @@ app.use(
   cors({
     origin: "http://localhost:5173",
     credentials: true,
-  })
+  }),
 );
 
 app.use(express.json());
@@ -29,4 +29,4 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-export default app;
+module.exports = app;

@@ -1,17 +1,17 @@
-import * as cpuRepo from "../repositories/cpuRepo.js";
-import Cpu from "../models/cpuModel.js";
+const cpuRepo = require("../repositories/cpuRepo");
+const Cpu = require("../models/cpuModel");
 
-export const getAll = async () => {
+const getAll = async () => {
   const rows = await cpuRepo.findAll();
   return rows.map((row) => Cpu.fromDb(row));
 };
 
-export const getById = async (id) => {
+const getById = async (id) => {
   const row = await cpuRepo.findById(id);
   return Cpu.fromDb(row);
 };
 
-export const createCpu = async (data) => {
+const createCpu = async (data) => {
   const cpu = new Cpu(data);
   const errors = cpu.validate();
   if (errors.length) {
@@ -25,7 +25,7 @@ export const createCpu = async (data) => {
   return cpu;
 };
 
-export const updateCpu = async (id, data) => {
+const updateCpu = async (id, data) => {
   const existing = await getById(id);
   if (!existing) return null;
   const updated = new Cpu({ ...existing, ...data, id });
@@ -40,7 +40,9 @@ export const updateCpu = async (id, data) => {
   return affected > 0 ? await getById(id) : null;
 };
 
-export const deleteCpu = async (id) => {
+const deleteCpu = async (id) => {
   const affected = await cpuRepo.removeById(id);
   return affected > 0;
 };
+
+module.exports = { getAll, getById, createCpu, updateCpu, deleteCpu };

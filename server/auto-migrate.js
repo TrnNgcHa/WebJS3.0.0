@@ -1,12 +1,10 @@
 #!/usr/bin/env node
 
-import { execSync } from "child_process";
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
+const { execSync } = require("child_process");
+const fs = require("fs");
+const path = require("path");
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = __dirname || path.dirname(require.main.filename);
 
 const modelsDir = path.join(__dirname, "src", "models");
 const migrationsDir = path.join(__dirname, "src", "migrations");

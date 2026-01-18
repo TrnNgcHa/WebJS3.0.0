@@ -1,17 +1,17 @@
-import * as laptopRepo from "../repositories/laptopRepo.js";
-import Laptop from "../models/laptopModel.js";
+const laptopRepo = require("../repositories/laptopRepo");
+const Laptop = require("../models/laptopModel");
 
-export const getAll = async () => {
+const getAll = async () => {
   const rows = await laptopRepo.findAll();
   return rows.map((r) => Laptop.fromDb(r));
 };
 
-export const getById = async (id) => {
+const getById = async (id) => {
   const row = await laptopRepo.findById(id);
   return Laptop.fromDb(row);
 };
 
-export const createLaptop = async (data) => {
+const createLaptop = async (data) => {
   const laptop = new Laptop(data);
   const errors = laptop.validate();
   if (errors.length) {
@@ -25,7 +25,7 @@ export const createLaptop = async (data) => {
   return laptop;
 };
 
-export const updateLaptop = async (id, data) => {
+const updateLaptop = async (id, data) => {
   const existing = await getById(id);
   if (!existing) return null;
   const updated = new Laptop({ ...existing, ...data, id });
@@ -40,7 +40,9 @@ export const updateLaptop = async (id, data) => {
   return affected > 0 ? await getById(id) : null;
 };
 
-export const deleteLaptop = async (id) => {
+const deleteLaptop = async (id) => {
   const affected = await laptopRepo.removeById(id);
   return affected > 0;
 };
+
+module.exports = { getAll, getById, createLaptop, updateLaptop, deleteLaptop };

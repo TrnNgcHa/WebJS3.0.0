@@ -1,4 +1,4 @@
-export default class Ram {
+class Ram {
   constructor({
     id = null,
     name,
@@ -78,3 +78,5 @@ export default class Ram {
     return errors;
   }
 }
+
+module.exports = Ram;

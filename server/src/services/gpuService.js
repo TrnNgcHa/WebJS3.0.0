@@ -1,17 +1,17 @@
-import * as gpuRepo from "../repositories/gpuRepo.js";
-import Gpu from "../models/gpuModel.js";
+const gpuRepo = require("../repositories/gpuRepo");
+const Gpu = require("../models/gpuModel");
 
-export const getAll = async () => {
+const getAll = async () => {
   const rows = await gpuRepo.findAll();
   return rows.map((row) => Gpu.fromDb(row));
 };
 
-export const getById = async (id) => {
+const getById = async (id) => {
   const row = await gpuRepo.findById(id);
   return Gpu.fromDb(row);
 };
 
-export const createGpu = async (data) => {
+const createGpu = async (data) => {
   const gpu = new Gpu(data);
   const errors = gpu.validate();
   if (errors.length) {
@@ -25,7 +25,7 @@ export const createGpu = async (data) => {
   return gpu;
 };
 
-export const updateGpu = async (id, data) => {
+const updateGpu = async (id, data) => {
   const existing = await getById(id);
   if (!existing) return null;
   const updated = new Gpu({ ...existing, ...data, id });
@@ -40,7 +40,9 @@ export const updateGpu = async (id, data) => {
   return affected > 0 ? await getById(id) : null;
 };
 
-export const deleteGpu = async (id) => {
+const deleteGpu = async (id) => {
   const affected = await gpuRepo.removeById(id);
   return affected > 0;
 };
+
+module.exports = { getAll, getById, createGpu, updateGpu, deleteGpu };

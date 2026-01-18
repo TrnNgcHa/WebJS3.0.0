@@ -1,72 +1,81 @@
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import User from "../models/userModel.js";
-import * as userRepo from "../repositories/userRepo.js";
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const Account = require("../models/accountModel");
+const accountRepo = require("../repositories/accountRepo");
 
 const JWT_SECRET =
   process.env.JWT_SECRET || "your-secret-key-change-in-production";
 const JWT_EXPIRE = process.env.JWT_EXPIRE || "7d";
 const BCRYPT_ROUNDS = 10;
 
-export const register = async (email, userName, password) => {
-  // Check if user already exists
-  const existingUser = await userRepo.findByEmail(email);
-  if (existingUser) {
-    throw new Error("User with this email already exists");
+const register = async (email, userName, password) => {
+  // Check if account already exists
+  const existingAccount = await accountRepo.findByEmail(email);
+  if (existingAccount) {
+    throw new Error("Account with this email already exists");
   }
 
   // Hash password
   const passwordHash = await bcrypt.hash(password, BCRYPT_ROUNDS);
 
-  // Create new user
-  const newUser = new User({
+  // Create new account
+  const newAccount = new Account({
     email,
     userName,
     passwordHash,
     balance: 0,
+    isActive: true,
+    role: "user",
   });
 
-  const userId = await userRepo.create(newUser);
+  const accountId = await accountRepo.create(newAccount);
 
-  // Return user data and token
+  // Return account data and token
   return {
-    user: {
-      id: userId,
+    account: {
+      id: accountId,
       email,
       userName,
+      role: "user",
     },
-    token: generateToken(userId),
+    token: generateToken(accountId),
   };
 };
 
-export const login = async (email, password) => {
-  // Find user by email
-  const user = await userRepo.findByEmail(email);
-  if (!user) {
+const login = async (email, password) => {
+  // Find account by email
+  const account = await accountRepo.findByEmail(email);
+  if (!account) {
     throw new Error("Invalid email or password");
   }
 
+  // Check if account is active
+  if (!account.isActive) {
+    throw new Error("Account is inactive");
+  }
+
   // Verify password
-  const isPasswordValid = await bcrypt.compare(password, user.passwordHash);
+  const isPasswordValid = await bcrypt.compare(password, account.passwordHash);
   if (!isPasswordValid) {
     throw new Error("Invalid email or password");
   }
 
   // Generate token
-  const token = generateToken(user.id);
+  const token = generateToken(account.id);
 
   return {
-    user: {
-      id: user.id,
-      email: user.email,
-      userName: user.userName,
-      balance: user.balance,
+    account: {
+      id: account.id,
+      email: account.email,
+      userName: account.userName,
+      balance: account.balance,
+      role: account.role,
     },
     token,
   };
 };
 
-export const verifyToken = (token) => {
+const verifyToken = (token) => {
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
     return decoded;
@@ -75,20 +84,24 @@ export const verifyToken = (token) => {
   }
 };
 
-export const generateToken = (userId) => {
+const generateToken = (userId) => {
   return jwt.sign({ userId }, JWT_SECRET, { expiresIn: JWT_EXPIRE });
 };
 
-export const getUserById = async (userId) => {
-  const user = await userRepo.findById(userId);
-  if (!user) {
-    throw new Error("User not found");
+const getUserById = async (userId) => {
+  const account = await accountRepo.findById(userId);
+  if (!account) {
+    throw new Error("Account not found");
   }
 
   return {
-    id: user.id,
-    email: user.email,
-    userName: user.userName,
-    balance: user.balance,
+    id: account.id,
+    email: account.email,
+    userName: account.userName,
+    balance: account.balance,
+    role: account.role,
+    isActive: account.isActive,
   };
 };
+
+module.exports = { register, login, verifyToken, generateToken, getUserById };

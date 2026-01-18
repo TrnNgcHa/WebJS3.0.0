@@ -1,12 +1,12 @@
-import { initializeDatabase } from "../config/database.js";
+const { initializeDatabase } = require("../config/database");
 
-export const findAll = async () => {
+const findAll = async () => {
   const pool = await initializeDatabase();
   const [rows] = await pool.execute("SELECT * FROM GpuTable");
   return rows;
 };
 
-export const findById = async (id) => {
+const findById = async (id) => {
   const pool = await initializeDatabase();
   const [rows] = await pool.execute("SELECT * FROM GpuTable WHERE Id = ?", [
     id,
@@ -14,30 +14,32 @@ export const findById = async (id) => {
   return rows[0] || null;
 };
 
-export const create = async (gpuParams) => {
+const create = async (gpuParams) => {
   const pool = await initializeDatabase();
   const [result] = await pool.execute(
     `INSERT INTO GpuTable (Name, Brand, Price, Stock, CudaCore, BaseClock, Vram, Pcie)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-    gpuParams
+    gpuParams,
   );
   return result.insertId;
 };
 
-export const updateById = async (id, gpuParams) => {
+const updateById = async (id, gpuParams) => {
   const pool = await initializeDatabase();
   const params = [...gpuParams, id];
   const [result] = await pool.execute(
     `UPDATE GpuTable SET Name = ?, Brand = ?, Price = ?, Stock = ?, CudaCore = ?, BaseClock = ?, Vram = ?, Pcie = ? WHERE Id = ?`,
-    params
+    params,
   );
   return result.affectedRows;
 };
 
-export const removeById = async (id) => {
+const removeById = async (id) => {
   const pool = await initializeDatabase();
   const [result] = await pool.execute("DELETE FROM GpuTable WHERE Id = ?", [
     id,
   ]);
   return result.affectedRows;
 };
+
+module.exports = { findAll, findById, create, updateById, removeById };

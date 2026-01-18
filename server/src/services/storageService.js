@@ -1,17 +1,17 @@
-import * as storageRepo from "../repositories/storageRepo.js";
-import Storage from "../models/storageModel.js";
+const storageRepo = require("../repositories/storageRepo");
+const Storage = require("../models/storageModel");
 
-export const getAll = async () => {
+const getAll = async () => {
   const rows = await storageRepo.findAll();
   return rows.map((row) => Storage.fromDb(row));
 };
 
-export const getById = async (id) => {
+const getById = async (id) => {
   const row = await storageRepo.findById(id);
   return Storage.fromDb(row);
 };
 
-export const createStorage = async (data) => {
+const createStorage = async (data) => {
   const storage = new Storage(data);
   const errors = storage.validate();
   if (errors.length) {
@@ -25,7 +25,7 @@ export const createStorage = async (data) => {
   return storage;
 };
 
-export const updateStorage = async (id, data) => {
+const updateStorage = async (id, data) => {
   const existing = await getById(id);
   if (!existing) return null;
   const updated = new Storage({ ...existing, ...data, id });
@@ -40,7 +40,15 @@ export const updateStorage = async (id, data) => {
   return affected > 0 ? await getById(id) : null;
 };
 
-export const deleteStorage = async (id) => {
+const deleteStorage = async (id) => {
   const affected = await storageRepo.removeById(id);
   return affected > 0;
+};
+
+module.exports = {
+  getAll,
+  getById,
+  createStorage,
+  updateStorage,
+  deleteStorage,
 };

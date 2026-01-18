@@ -1,4 +1,4 @@
-export default class Gpu {
+class Gpu {
   constructor({
     id = null,
     name,
@@ -97,3 +97,5 @@ export default class Gpu {
     return errors;
   }
 }
+
+module.exports = Gpu;

@@ -1,4 +1,4 @@
-export default class Storage {
+class Storage {
   constructor({
     id = null,
     name,
@@ -78,3 +78,5 @@ export default class Storage {
     return errors;
   }
 }
+
+module.exports = Storage;

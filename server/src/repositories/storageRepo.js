@@ -1,12 +1,12 @@
-import { initializeDatabase } from "../config/database.js";
+const { initializeDatabase } = require("../config/database");
 
-export const findAll = async () => {
+const findAll = async () => {
   const pool = await initializeDatabase();
   const [rows] = await pool.execute("SELECT * FROM StorageTable");
   return rows;
 };
 
-export const findById = async (id) => {
+const findById = async (id) => {
   const pool = await initializeDatabase();
   const [rows] = await pool.execute("SELECT * FROM StorageTable WHERE Id = ?", [
     id,
@@ -14,30 +14,32 @@ export const findById = async (id) => {
   return rows[0] || null;
 };
 
-export const create = async (storageParams) => {
+const create = async (storageParams) => {
   const pool = await initializeDatabase();
   const [result] = await pool.execute(
     `INSERT INTO StorageTable (Name, Brand, Price, Stock, StorageType, InterfaceType, Capacity)
          VALUES (?, ?, ?, ?, ?, ?, ?)`,
-    storageParams
+    storageParams,
   );
   return result.insertId;
 };
 
-export const updateById = async (id, storageParams) => {
+const updateById = async (id, storageParams) => {
   const pool = await initializeDatabase();
   const params = [...storageParams, id];
   const [result] = await pool.execute(
     `UPDATE StorageTable SET Name = ?, Brand = ?, Price = ?, Stock = ?, StorageType = ?, InterfaceType = ?, Capacity = ? WHERE Id = ?`,
-    params
+    params,
   );
   return result.affectedRows;
 };
 
-export const removeById = async (id) => {
+const removeById = async (id) => {
   const pool = await initializeDatabase();
   const [result] = await pool.execute("DELETE FROM StorageTable WHERE Id = ?", [
     id,
   ]);
   return result.affectedRows;
 };
+
+module.exports = { findAll, findById, create, updateById, removeById };

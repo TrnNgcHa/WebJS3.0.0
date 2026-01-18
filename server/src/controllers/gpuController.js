@@ -1,6 +1,6 @@
-import * as gpuService from "../services/gpuService.js";
+const gpuService = require("../services/gpuService");
 
-export const list = async (req, res, next) => {
+const list = async (req, res, next) => {
   try {
     const gpus = await gpuService.getAll();
     res.json(gpus);
@@ -9,7 +9,7 @@ export const list = async (req, res, next) => {
   }
 };
 
-export const getOne = async (req, res, next) => {
+const getOne = async (req, res, next) => {
   try {
     const id = parseInt(req.params.id, 10);
     const gpu = await gpuService.getById(id);
@@ -20,7 +20,7 @@ export const getOne = async (req, res, next) => {
   }
 };
 
-export const create = async (req, res, next) => {
+const create = async (req, res, next) => {
   try {
     const created = await gpuService.createGpu(req.body);
     res.status(201).json(created);
@@ -29,7 +29,7 @@ export const create = async (req, res, next) => {
   }
 };
 
-export const update = async (req, res, next) => {
+const update = async (req, res, next) => {
   try {
     const id = parseInt(req.params.id, 10);
     const updated = await gpuService.updateGpu(id, req.body);
@@ -40,7 +40,7 @@ export const update = async (req, res, next) => {
   }
 };
 
-export const remove = async (req, res, next) => {
+const remove = async (req, res, next) => {
   try {
     const id = parseInt(req.params.id, 10);
     const ok = await gpuService.deleteGpu(id);
@@ -50,3 +50,5 @@ export const remove = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports = { list, getOne, create, update, remove };
